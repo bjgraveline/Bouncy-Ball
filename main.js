@@ -33,11 +33,12 @@ function isInBall(event) {
 	var x = event.clientX;
 	var y = event.clientY;
 	var coords = "Coordinates: " + x + ", " + y;
-	if(x > ball.translation.x - 100 && x < ball.translation.x + 100) {
-		if(y < ball.translation.y + 100 && y > ball.translation.y - 100) {
-			x_vel = (ball.translation.x - x) / 10;
-		}
+
+	// Distance Formula
+	if (Math.sqrt(Math.pow((x - ball.translation.x), 2) + Math.pow((y - ball.translation.y), 2)) <= 100) {
+		x_vel = (ball.translation.x - x) / 10;
 	}
+	
 	return x_vel;
 }
 
