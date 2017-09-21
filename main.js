@@ -27,12 +27,21 @@ function moveDown(acceleration){
 	ball.translation.y = ball.translation.y + 1 * acceleration;
 }
 
-function getCoords(event) {
+
+function isInBall(event) {
+	var inBall = false;
 	var x = event.clientX;
 	var y = event.clientY;
 	var coords = "Coordinates: " + x + ", " + y;
-	console.log(coords);
+	if(x > ball.translation.x - 100 && x < ball.translation.x + 100) {
+		if(y < ball.translation.y + 100 && y > ball.translation.y - 100) {
+			inBall = true;
+		}
+	}
+	console.log(inBall);
 }
+
+
 
 var x_vel = 3; // simple x velocity
 
@@ -51,9 +60,6 @@ two.bind("update", function(frameCount) {
 		ball.translation.y = ground - 105;
 		isFalling = false;
 	}
-
-	// console.log("ball pos: " + ball.translation.x);
-	// console.log("two.width: " + two.width);
 
 	if (ball.translation.x > two.width - 100) {
 		ball.translation.x = two.width - 100;
