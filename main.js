@@ -35,15 +35,13 @@ function isInBall(event) {
 	var coords = "Coordinates: " + x + ", " + y;
 	if(x > ball.translation.x - 100 && x < ball.translation.x + 100) {
 		if(y < ball.translation.y + 100 && y > ball.translation.y - 100) {
-			inBall = true;
+			x_vel = (ball.translation.x - x) / 10;
 		}
 	}
-	console.log(inBall);
+	return x_vel;
 }
 
-
-
-var x_vel = 3; // simple x velocity
+var x_vel = 0; // simple x velocity
 
 two.bind("update", function(frameCount) {
 	if(ball.translation.y <= ground - 105 && isFalling) {
