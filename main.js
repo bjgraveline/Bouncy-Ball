@@ -27,6 +27,13 @@ function moveDown(acceleration){
 	ball.translation.y = ball.translation.y + 1 * acceleration;
 }
 
+function getCoords(event) {
+	var x = event.clientX;
+	var y = event.clientY;
+	var coords = "Coordinates: " + x + ", " + y;
+	console.log(coords);
+}
+
 var x_vel = 3; // simple x velocity
 
 two.bind("update", function(frameCount) {
