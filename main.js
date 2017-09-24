@@ -59,7 +59,6 @@ function move() {
 		ball.translation.x = ball.translation.x + xVel;
 	}
 	yVel = yVel + (frameCount / 6000); //gravity
-	console.log(frameCount)
 	frameCount++;
 }
 
