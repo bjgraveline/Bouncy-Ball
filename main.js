@@ -37,7 +37,7 @@ function isInBall(event) {
 function move() {
 	if(ball.translation.y > ground - 105) {
 		ball.translation.y = ground - 105;
-		yVel = -yVel;
+		yVel = -yVel + 2; //Energy loss when ball bounces
 	} else if (ball.translation.y < ceiling) {
 		ball.translation.y = ceiling;
 		yVel = -yVel;
@@ -59,6 +59,7 @@ two.bind("update", function(frameCount) {
 	console.log(ball.translation.y);
 	console.log(yVel);
 	move();
+	yVel = yVel + 0.2; //gravity
 
 });
 two.play();
