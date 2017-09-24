@@ -9,6 +9,8 @@ var ground = two.height * 15 / 16; //Where the red line (ground) should be
 var ceiling = 100; //Same as radius of circle so that the top reaches the edge of the screen
 var xVel = 3; // simple x velocity
 var yVel = 3;// simple y velocity
+var score = 0;
+var count = 0;
 
 /*****************Object creation****************************/
 //Make ground
@@ -30,7 +32,8 @@ function isInBall(event) {
 	if (Math.pow((x - ball.translation.x), 2) + Math.pow((y - ball.translation.y), 2) <= 10000) {
 		xVel = (ball.translation.x - x) / 10;
 		yVel = (ball.translation.y - y) / 10;
-	}	
+	}
+	count++;	
 	return xVel, yVel;
 }
 
@@ -38,6 +41,8 @@ function move() {
 	if(ball.translation.y > ground - 105) {
 		ball.translation.y = ground - 105;
 		yVel = -yVel + 2; //Energy loss when ball bounces
+		alert("You scored: " + count);
+		count = 0;
 	} else if (ball.translation.y < ceiling) {
 		ball.translation.y = ceiling;
 		yVel = -yVel;
@@ -56,8 +61,6 @@ function move() {
 }
 
 two.bind("update", function(frameCount) {
-	console.log(ball.translation.y);
-	console.log(yVel);
 	move();
 	yVel = yVel + 0.2; //gravity
 
