@@ -11,6 +11,7 @@ var xVel = 3; // simple x velocity
 var yVel = 3;// simple y velocity
 var score = 0;
 var count = 0;
+var frameCount = 0
 
 /*****************Object creation****************************/
 //Make ground
@@ -30,7 +31,7 @@ function isInBall(event) {
 	var coords = "Coordinates: " + x + ", " + y;
 	// Distance Formula
 	if (Math.pow((x - ball.translation.x), 2) + Math.pow((y - ball.translation.y), 2) <= 10000) {
-		xVel = (ball.translation.x - x) / 10;
+		xVel = (ball.translation.x - x) / 5;
 		yVel = (ball.translation.y - y) / 10;
 	}
 	count++;	
@@ -43,9 +44,8 @@ function move() {
 		yVel = -yVel + 2; //Energy loss when ball bounces
 		alert("You scored: " + count);
 		count = 0;
-	} else if (ball.translation.y < ceiling) {
-		ball.translation.y = ceiling;
-		yVel = -yVel;
+		frameCount = 0;
+		yVel = -1;
 	} else {
 		ball.translation.y = ball.translation.y + yVel;
 	}
@@ -58,11 +58,12 @@ function move() {
 	} else {
 		ball.translation.x = ball.translation.x + xVel;
 	}
+	yVel = yVel + (frameCount / 6000); //gravity
+	console.log(frameCount)
+	frameCount++;
 }
 
 two.bind("update", function(frameCount) {
 	move();
-	yVel = yVel + 0.2; //gravity
-
 });
 two.play();
